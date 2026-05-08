@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(120deg, #27384d, #380505);
+  min-height: 100vh;
+}
+
+.page-wrapper {
+  display: flex;
+  gap: 50px;
+  padding: 55px 45px;
+  min-height: 100vh;
+}
+
+.filter-panel {
+  width: 280px;
+  height: 360px;
+  background-color: #e6e6e6;
+  border-radius: 10px;
+  padding: 25px 30px;
+  color: #111;
+}
+
+.filter-title {
+  font-size: 32px;
+  margin: 0 0 25px 0;
+  font-weight: bold;
+}
+
+.filter-section {
+  margin-bottom: 35px;
+}
+
+.filter-heading {
+  font-size: 20px;
+  margin: 0 0 12px 0;
+  font-weight: bold;
+}
+
+.filter-option {
+  display: block;
+  font-size: 17px;
+  margin: 9px 0;
+  cursor: pointer;
+}
+
+.filter-option input {
+  margin-right: 6px;
+}
+
+.articles-section {
+  flex: 1;
+  max-width: 920px;
+}
+
+.loading-message {
+  color: white;
+  font-size: 18px;
+}
+
+.articles-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.article-card {
+  background: linear-gradient(to right, #eeeeee, #bcbcbc);
+  border-radius: 10px;
+  padding: 14px 18px;
+  min-height: 125px;
+  box-shadow: none;
+}
+
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 10px;
+}
+
+.article-title {
+  font-size: 17px;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.article-link {
+  color: #111;
+  text-decoration: none;
+}
+
+.article-link:hover {
+  text-decoration: underline;
+}
+
+.article-date {
+  font-size: 12px;
+  color: #555;
+  white-space: nowrap;
+  margin-top: 3px;
+}
+
+.article-body {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.article-image {
+  width: 95px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.article-abstract {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.35;
+  color: #222;
+}
+
+@media (max-width: 900px) {
+  .page-wrapper {
+    flex-direction: column;
+    padding: 25px;
+    gap: 25px;
+  }
+
+  .filter-panel {
+    width: 100%;
+    height: auto;
+  }
+
+  .articles-section {
+    max-width: 100%;
+  }
+
+  .article-body {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .article-image {
+    width: 100%;
+    height: 180px;
+  }
+}

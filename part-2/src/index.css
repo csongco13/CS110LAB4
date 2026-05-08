@@ -1,0 +1,151 @@
+.board {
+  position: relative;
+  width: 318px;
+  margin: 0 auto;
+}
+
+.strike {
+  position: absolute;
+  background-color: #ff4fb8;
+  z-index: 10;
+}
+
+.hidden {
+  display: none;
+}
+
+.strike-row-1 {
+  width: 100%;
+  height: 6px;
+  top: 16%;
+}
+
+.strike-row-2 {
+  width: 100%;
+  height: 6px;
+  top: 50%;
+}
+
+.strike-row-3 {
+  width: 100%;
+  height: 6px;
+  top: 83%;
+}
+
+.strike-column-1 {
+  height: 100%;
+  width: 6px;
+  left: 16%;
+  top: 0;
+}
+
+.strike-column-2 {
+  height: 100%;
+  width: 6px;
+  left: 50%;
+  top: 0;
+}
+
+.strike-column-3 {
+  height: 100%;
+  width: 6px;
+  left: 83%;
+  top: 0;
+}
+
+.strike-diagonal-1 {
+  width: 100%;
+  height: 6px;
+  top: 50%;
+  transform: rotate(45deg);
+}
+
+.strike-diagonal-2 {
+  width: 100%;
+  height: 6px;
+  top: 50%;
+  transform: rotate(-45deg);
+}
+.app {
+  text-align: center;
+  margin-top: 50px;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 35px;
+  border-radius: 25px;
+  border: 4px solid #ff8fd8;
+  box-shadow: 0 0 25px #ffb6e6;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 45px;
+  color: #ff4fb8;
+  text-shadow: 2px 2px #fff176;
+}
+
+.status {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #7b2cbf;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.scoreboard h2 {
+  background-color: #fff4fb;
+  border: 3px solid #ff8fd8;
+  border-radius: 20px;
+  padding: 10px 18px;
+  color: #ff4fb8;
+  box-shadow: 0 0 12px #ffd1ec;
+}
+
+.board-row {
+  display: flex;
+  justify-content: center;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  border: 3px solid #ff8fd8;
+  background: linear-gradient(145deg, #ffffff, #ffe6f7);
+  font-size: 45px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #7b2cbf;
+  text-shadow: 1px 1px #fff176;
+  box-shadow: inset 0 0 10px #ffd1ec;
+  transition: 0.2s;
+}
+
+.square:hover {
+  background: #fff176;
+  transform: scale(1.05);
+}
+
+.new-game {
+  margin-top: 25px;
+  padding: 12px 25px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #ff8fd8, #7b2cbf);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 0 15px #ffb6e6;
+  transition: 0.2s;
+}
+
+.new-game:hover {
+  background: linear-gradient(135deg, #fff176, #ff8fd8);
+  color: #4b2354;
+  transform: scale(1.05);
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NYT Popular Articles</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="main.js" defer></script>
+</head>
+
+<body>
+  <main id="page-wrapper" class="page-wrapper">
+
+    <aside id="filter-panel" class="filter-panel">
+      <h1 id="filter-title" class="filter-title">Filter</h1>
+
+      <section id="sort-section" class="filter-section">
+        <h2 class="filter-heading">Sort By:</h2>
+
+        <label class="filter-option">
+          <input id="sort-viewed" class="sort-radio" type="radio" name="sort" value="viewed" checked />
+          Most Viewed
+        </label>
+
+        <label class="filter-option">
+          <input id="sort-shared" class="sort-radio" type="radio" name="sort" value="shared" />
+          Most Shared
+        </label>
+
+        <label class="filter-option">
+          <input id="sort-emailed" class="sort-radio" type="radio" name="sort" value="emailed" />
+          Most Emailed
+        </label>
+      </section>
+
+      <section id="time-section" class="filter-section">
+        <h2 class="filter-heading">Time Frame:</h2>
+
+        <label class="filter-option">
+          <input id="time-day" class="time-radio" type="radio" name="time" value="1" />
+          Day
+        </label>
+
+        <label class="filter-option">
+          <input id="time-week" class="time-radio" type="radio" name="time" value="7" />
+          Week
+        </label>
+
+        <label class="filter-option">
+          <input id="time-month" class="time-radio" type="radio" name="time" value="30" checked />
+          Month
+        </label>
+      </section>
+    </aside>
+
+    <section id="articles-section" class="articles-section">
+      <p id="loading-message" class="loading-message">Loading articles...</p>
+      <div id="articles-container" class="articles-container"></div>
+    </section>
+
+  </main>
+</body>
+</html>
