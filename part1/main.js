@@ -1,4 +1,4 @@
-const API_KEY = "6LzGRSUGPW90sKE1bZMdixJvzbRAGk3s5ufXzvR6cdnuLUZc";
+const API_KEY = "";
 
 const articlesContainer = document.getElementById("articles-container");
 const loadingMessage = document.getElementById("loading-message");
