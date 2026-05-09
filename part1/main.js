@@ -1,17 +1,42 @@
-const API_KEY = "";
+const API_KEY = "6LzGRSUGPW90sKE1bZMdixJvzbRAGk3s5ufXzvR6cdnuLUZc";
 
 const articlesContainer = document.getElementById("articles-container");
 const loadingMessage = document.getElementById("loading-message");
 
-const sortRadios = document.querySelectorAll(".sort-radio");
-const timeRadios = document.querySelectorAll(".time-radio");
+const sortViewed = document.getElementById("sort-viewed");
+const sortShared = document.getElementById("sort-shared");
+const sortEmailed = document.getElementById("sort-emailed");
+
+const timeDay = document.getElementById("time-day");
+const timeWeek = document.getElementById("time-week");
+const timeMonth = document.getElementById("time-month");
 
 function getSelectedSort() {
-  return document.querySelector('input[name="sort"]:checked').value;
+  if (sortViewed.checked) {
+    return sortViewed.value;
+  }
+
+  if (sortShared.checked) {
+    return sortShared.value;
+  }
+
+  if (sortEmailed.checked) {
+    return sortEmailed.value;
+  }
 }
 
 function getSelectedTime() {
-  return document.querySelector('input[name="time"]:checked').value;
+  if (timeDay.checked) {
+    return timeDay.value;
+  }
+
+  if (timeWeek.checked) {
+    return timeWeek.value;
+  }
+
+  if (timeMonth.checked) {
+    return timeMonth.value;
+  }
 }
 
 function buildApiUrl() {
@@ -27,9 +52,12 @@ async function getArticles() {
 
   try {
     const response = await fetch(buildApiUrl());
-    const data = await response.json();
 
-    console.log(data.results[0]);
+    if (!response.ok) {
+      throw new Error("Could not fetch articles");
+    }
+
+    const data = await response.json();
 
     displayArticles(data.results);
   } catch (error) {
@@ -39,7 +67,17 @@ async function getArticles() {
 }
 
 function getArticleImage(article) {
-  return article.media[0]["media-metadata"][0].url;
+  if (
+    article.media &&
+    article.media.length > 0 &&
+    article.media[0]["media-metadata"] &&
+    article.media[0]["media-metadata"].length > 0
+  ) {
+    const images = article.media[0]["media-metadata"];
+    return images[images.length - 1].url;
+  }
+
+  return "https://upload.wikimedia.org/wikipedia/commons/7/77/The_New_York_Times_logo.png";
 }
 
 function displayArticles(articles) {
@@ -49,48 +87,77 @@ function displayArticles(articles) {
   let count = 0;
 
   for (let i = 0; i < articles.length && count < 10; i++) {
-    try {
-      const article = articles[i];
+    const article = articles[i];
 
-      const title = article.title;
-      const abstract = article.abstract;
-      const date = article.published_date;
-      const url = article.url;
-      const imageUrl = getArticleImage(article);
+    const title = article.title;
+    const abstract = article.abstract;
+    const date = article.published_date;
+    const url = article.url;
+    const imageUrl = getArticleImage(article);
 
-      const articleCard = document.createElement("article");
-      articleCard.className = "article-card";
+    const articleCard = document.createElement("article");
+    articleCard.className = "article-card";
+    articleCard.id = `article-card-${count + 1}`;
 
-      articleCard.innerHTML = `
-        <div class="article-header">
-          <h2 class="article-title">
-            <a class="article-link" href="${url}" target="_blank">
-              ${count + 1}) ${title}
-            </a>
-          </h2>
-          <span class="article-date">${date}</span>
-        </div>
+    const articleHeader = document.createElement("div");
+    articleHeader.className = "article-header";
+    articleHeader.id = `article-header-${count + 1}`;
 
-        <div class="article-body">
-          <img class="article-image" src="${imageUrl}" alt="${title}" />
-          <p class="article-abstract">${abstract}</p>
-        </div>
-      `;
+    const articleTitle = document.createElement("h2");
+    articleTitle.className = "article-title";
+    articleTitle.id = `article-title-${count + 1}`;
 
-      articlesContainer.appendChild(articleCard);
-      count++;
-    } catch (error) {
-      continue;
-    }
+    const articleLink = document.createElement("a");
+    articleLink.className = "article-link";
+    articleLink.id = `article-link-${count + 1}`;
+    articleLink.href = url;
+    articleLink.target = "_blank";
+    articleLink.rel = "noopener noreferrer";
+    articleLink.textContent = `${count + 1}) ${title}`;
+
+    const articleDate = document.createElement("span");
+    articleDate.className = "article-date";
+    articleDate.id = `article-date-${count + 1}`;
+    articleDate.textContent = date;
+
+    const articleBody = document.createElement("div");
+    articleBody.className = "article-body";
+    articleBody.id = `article-body-${count + 1}`;
+
+    const articleImage = document.createElement("img");
+    articleImage.className = "article-image";
+    articleImage.id = `article-image-${count + 1}`;
+    articleImage.src = imageUrl;
+    articleImage.alt = title;
+
+    const articleAbstract = document.createElement("p");
+    articleAbstract.className = "article-abstract";
+    articleAbstract.id = `article-abstract-${count + 1}`;
+    articleAbstract.textContent = abstract;
+
+    articleTitle.appendChild(articleLink);
+
+    articleHeader.appendChild(articleTitle);
+    articleHeader.appendChild(articleDate);
+
+    articleBody.appendChild(articleImage);
+    articleBody.appendChild(articleAbstract);
+
+    articleCard.appendChild(articleHeader);
+    articleCard.appendChild(articleBody);
+
+    articlesContainer.appendChild(articleCard);
+
+    count++;
   }
 }
 
-sortRadios.forEach((radio) => {
-  radio.addEventListener("change", getArticles);
-});
+sortViewed.addEventListener("change", getArticles);
+sortShared.addEventListener("change", getArticles);
+sortEmailed.addEventListener("change", getArticles);
 
-timeRadios.forEach((radio) => {
-  radio.addEventListener("change", getArticles);
-});
+timeDay.addEventListener("change", getArticles);
+timeWeek.addEventListener("change", getArticles);
+timeMonth.addEventListener("change", getArticles);
 
 getArticles();

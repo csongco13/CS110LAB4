@@ -1,0 +1,136 @@
+.about-page {
+  text-align: center;
+  margin: 20px auto;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 35px;
+  border-radius: 25px;
+  width: fit-content;
+  max-width: 600px;
+}
+
+.about-pic {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 20px 0;
+}
+
+.about-desc {
+  font-size: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  color: #4b2354;
+}
+
+.game-button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #ff692e, #bf2c2c);
+  color: white;
+  font-weight: bold;
+}
+
+.dino-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 20, 20, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dino-modal {
+  background-color: white;
+  width: 450px;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px black;
+  text-align: center;
+}
+
+.dino-modal h2 {
+  color: #bf2c2c;
+}
+
+.dino-game {
+  position: relative;
+  width: 400px;
+  height: 180px;
+  margin: 20px auto;
+  background: #f7f7f7;
+  border: 3px solid #333;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.dino {
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  font-size: 45px;
+}
+
+.jump {
+  animation: jump 0.6s ease;
+}
+
+.cactus {
+  position: absolute;
+  bottom: 20px;
+  right: -50px;
+  font-size: 40px;
+  animation: cactusMove 1.6s linear infinite;
+}
+
+.ground {
+  position: absolute;
+  bottom: 18px;
+  width: 100%;
+  height: 3px;
+  background-color: #333;
+}
+
+.game-help {
+  color: #4b2354;
+  font-size: 16px;
+}
+
+.close {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+@keyframes jump {
+  0% {
+    bottom: 20px;
+  }
+
+  50% {
+    bottom: 100px;
+  }
+
+  100% {
+    bottom: 20px;
+  }
+}
+
+@keyframes cactusMove {
+  0% {
+    right: -50px;
+  }
+
+  100% {
+    right: 430px;
+  }
+}

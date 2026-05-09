@@ -85,6 +85,9 @@ export default function Board({}) {
   function newGame() {
     setSquares(Array(9).fill(null));
     setXIsNext(true);
+
+    setOScore(0);
+    setXScore(0);
   }
 
   return (
